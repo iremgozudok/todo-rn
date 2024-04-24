@@ -12,6 +12,11 @@ export default function App() {
       { text: enteredGoalText, id: Math.random().toString() },
     ]);
   }
+
+  function deleteGoalHandler() {
+    console.log("Delete");
+  }
+
   return (
     <View style={styles.appContainer}>
       <GoalInput onAdd={addGoalHandler} />
@@ -19,7 +24,12 @@ export default function App() {
         <FlatList
           data={courseGoals}
           renderItem={(itemData) => {
-            return <GoalItem text={itemData.item.text} />;
+            return (
+              <GoalItem
+                text={itemData.item.text}
+                onDelete={deleteGoalHandler}
+              />
+            );
           }}
           keyExtractor={(item, index) => item.id}
           alwaysBounceVertical={false}
